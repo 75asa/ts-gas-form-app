@@ -10,13 +10,13 @@ function createForm() {
   const dateFrom = Moment.moment().add(-7, "days");
   const dateTo = Moment.moment().add(-1, "days");
   let formattedDate: string;
-  formattedDate = `${dateFrom.format("MM/dd")}~${dateTo.format("MM/dd")}`;
+  formattedDate = `${dateFrom.format("MM/dd")} ~ ${dateTo.format("MM/dd")}`;
 
   // form作成
   form = FormApp.create("【" + formattedDate + "】今週のBesthogehoge賞")
     .setTitle("【" + formattedDate + "】今週のBesthogehoge!!賞 ")
     .setDescription(
-      "今週最もhogehogeだったと思うメンバーを一名投票してください。"
+      "今週最もhogehogeだったと思うメンバーを1名投票してください。"
     )
     .addEditors(["hoge@gmail.com", "hogehoge@gmail.com"])
     .setCollectEmail(true);
@@ -37,8 +37,9 @@ function createForm() {
 
   // slackに通知する
   conditions = {
-    text: `今週のベストhogehoge賞の投票をお願い致します🔥\n ${form.getPublishedUrl()}`,
-    title: "今週のベストhogehoge賞"
+    text: "今週のベストhogehoge賞の投票をお願い致します🔥",
+    title: "今週のベストhogehoge賞",
+    title_link: form.getPublishedUrl()
   };
 
   this.sendSlack(conditions);

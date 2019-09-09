@@ -1,8 +1,10 @@
 import URLFetchRequestOptions = GoogleAppsScript.URL_Fetch.URLFetchRequestOptions;
+import { isConditionalExpression } from "typescript";
 
 interface Conditions {
   text: string;
   title: string;
+  title_link: string;
 }
 
 function sendSlack(conditions: Conditions) {
@@ -12,9 +14,10 @@ function sendSlack(conditions: Conditions) {
   const data = {
     attachments: [
       {
-        color: "#d23546",
+        color: "#d9204",
         text: conditions.text,
-        title: conditions.title
+        title: conditions.title,
+        title_link: conditions.title_link
       }
     ],
     channel: "#通知テストチャンネル",
